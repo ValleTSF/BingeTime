@@ -1,9 +1,7 @@
 import { StatusBar } from "expo-status-bar";
-import { View } from "react-native";
 import HomeScreen from "./screens/HomeScreen";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import SearchScreen from "./screens/SearchScreen";
 import EpisodeDetailsScreen from "./screens/EpisodeDetailsScreen";
 
 export enum ScreenRoutes {
