@@ -3,13 +3,11 @@ import { useEffect, useState } from "react";
 import * as S from "./styled";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { RootStackParamList, ScreenRoutes } from "../../App";
-import {
-  getShowIdFromEpisodeShowLink,
-  removeHTMLTagsFromString,
-} from "../../utils";
+import { getShowIdFromEpisodeShowLink } from "../../utils";
 import { getCastFromShow } from "../../api";
 import CastCarousel from "../../components/CastCarousel";
 import { CastMember } from "../../types";
+import EpisodeInfo from "./components/EpisodeInfo";
 
 type Props = NativeStackScreenProps<
   RootStackParamList,
@@ -20,7 +18,6 @@ const EpisodeDetailsScreen = ({ route }: Props) => {
   const [cast, setCast] = useState<CastMember[]>([]);
   const { episode } = route.params;
 
-  const formattedSummary = removeHTMLTagsFromString(episode.summary);
   const showId = getShowIdFromEpisodeShowLink(episode._links.show.href);
   const imageUri = episode.image
     ? episode.image.original
@@ -41,19 +38,7 @@ const EpisodeDetailsScreen = ({ route }: Props) => {
         style={{ height: "30%", width: "100%" }}
         source={{ uri: imageUri }}
       />
-      <S.HeaderContainer>
-        <S.Title>{episode.name}</S.Title>
-        <S.RatingContainer>
-          <S.RatingIcon name="star" />
-          <S.Rating>{episode.rating.average} / 10</S.Rating>
-        </S.RatingContainer>
-        <S.EpisodeAndSeason>
-          <S.EpisodeAndSeasonText>S.{episode.season}</S.EpisodeAndSeasonText>
-          <S.EpisodeAndSeasonText>E.{episode.number}</S.EpisodeAndSeasonText>
-        </S.EpisodeAndSeason>
-        <S.Runtime>{episode.runtime} min</S.Runtime>
-        <S.Summary>{formattedSummary}</S.Summary>
-      </S.HeaderContainer>
+      <EpisodeInfo episode={episode} />
       <CastCarousel cast={cast} />
     </S.Container>
   );
