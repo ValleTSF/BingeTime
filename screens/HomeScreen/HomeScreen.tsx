@@ -34,7 +34,7 @@ const HomeScreen = () => {
   };
 
   return (
-    <S.Container>
+    <S.Container source={require("../../assets/city.jpg")}>
       {!searchMode && <S.Header>BingeTime</S.Header>}
       <S.SearchContainer>
         {searchMode && (

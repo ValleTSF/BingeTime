@@ -1,9 +1,15 @@
-import { View, Text, Image } from "react-native";
-import React, { useEffect } from "react";
+import { View, Text, Image, ScrollView } from "react-native";
+import React, { useEffect, useState } from "react";
 import * as S from "./styled";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { RootStackParamList, ScreenRoutes } from "../../App";
-import { removeHTMLTagsFromString } from "../../utils";
+import {
+  getShowIdFromEpisodeShowLink,
+  removeHTMLTagsFromString,
+} from "../../utils";
+import { getCastFromShow } from "../../api";
+import CastCarousel from "../../components/CastCarousel";
+import { CastMember } from "../../types";
 
 type Props = NativeStackScreenProps<
   RootStackParamList,
@@ -11,18 +17,30 @@ type Props = NativeStackScreenProps<
 >;
 
 const EpisodeDetailsScreen = ({ route }: Props) => {
+  const [cast, setCast] = useState<CastMember[]>([]);
   const { episode } = route.params;
 
+  const formattedSummary = removeHTMLTagsFromString(episode.summary);
+  const showId = getShowIdFromEpisodeShowLink(episode._links.show.href);
   const imageUri = episode.image
     ? episode.image.original
     : "https://britchamvn.com/no-image.jpeg";
 
-  const formattedSummary = removeHTMLTagsFromString(episode.summary);
+  console.log("showid", showId);
+
+  useEffect(() => {
+    getCastFromShow(showId).then((cast) => setCast(cast));
+  }, []);
 
   return (
-    <S.Container>
+    <S.Container
+      contentContainerStyle={{
+        alignItems: "center",
+        justifyContent: "flex-start",
+      }}
+    >
       <Image
-        style={{ marginTop: 20, height: "30%", width: "100%" }}
+        style={{ height: "30%", width: "100%" }}
         source={{ uri: imageUri }}
       />
       <S.HeaderContainer>
@@ -35,9 +53,10 @@ const EpisodeDetailsScreen = ({ route }: Props) => {
           <S.EpisodeAndSeasonText>S.{episode.season}</S.EpisodeAndSeasonText>
           <S.EpisodeAndSeasonText>E.{episode.number}</S.EpisodeAndSeasonText>
         </S.EpisodeAndSeason>
-        <S.Runtime>Runtime: {episode.runtime} min</S.Runtime>
+        <S.Runtime>{episode.runtime} min</S.Runtime>
         <S.Summary>{formattedSummary}</S.Summary>
       </S.HeaderContainer>
+      <CastCarousel cast={cast} />
     </S.Container>
   );
 };

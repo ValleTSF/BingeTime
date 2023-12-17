@@ -1,17 +1,12 @@
 import styled from "styled-components/native";
-import { Platform, StatusBar } from "react-native";
+import { Platform, ScrollView, StatusBar } from "react-native";
 import Icon from "react-native-vector-icons/FontAwesome5";
 
-export const Container = styled.SafeAreaView`
+export const Container = styled.ScrollView`
   display: flex;
   width: 100%;
   height: 100%;
-  align-items: center;
-  justify-content: flex-start;
   background-color: #383838;
-  padding-top: ${Platform.OS === "android"
-    ? StatusBar.currentHeight + "px"
-    : 0 + "px"};
 `;
 
 export const HeaderContainer = styled.View`
