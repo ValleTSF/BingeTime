@@ -1,6 +1,6 @@
 import Icon from "react-native-vector-icons/FontAwesome5";
 import styled from "styled-components/native";
-import { TextInput } from "react-native";
+import { Platform, StatusBar, TextInput } from "react-native";
 
 export const Header = styled.Text`
   font-size: 52px;
@@ -9,17 +9,20 @@ export const Header = styled.Text`
   color: red;
 `;
 
-export const Container = styled.View`
+export const Container = styled.SafeAreaView`
   display: flex;
   width: 100%;
   height: 100%;
   align-items: center;
   justify-content: flex-start;
   background-color: #383838;
+  padding-top: ${Platform.OS === "android"
+    ? StatusBar.currentHeight + "px"
+    : 0 + "px"};
 `;
 
 export const SearchContainer = styled.View`
-  margin-top: 50px;
+  margin-top: 30px;
   display: flex;
   flex-direction: row;
   align-items: center;

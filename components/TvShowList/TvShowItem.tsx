@@ -26,7 +26,7 @@ const TvShowItem = ({ episode }: Props) => {
     <S.EpisodeContainer
       onPress={() =>
         navigation.navigate(ScreenRoutes.EPISODE_DETAILS_SCREEN, {
-          id: episode.id,
+          episode,
         })
       }
     >

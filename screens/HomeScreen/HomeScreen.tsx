@@ -2,8 +2,8 @@ import React, { useRef, useState } from "react";
 import * as S from "./styled";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { RootStackParamList, ScreenRoutes } from "../../App";
-import { TextInput } from "react-native";
-import { getTvShowsBySearch } from "../../api";
+import { ImageBackground, TextInput } from "react-native";
+import { getEpisodesSingleSearch } from "../../api";
 import { Tvshow } from "../../types";
 import TvShowList from "../../components/TvShowList";
 
@@ -19,8 +19,6 @@ const HomeScreen = () => {
 
   const inputRef = useRef<TextInput | null>(null);
 
-  console.log("searchResults", searchResults);
-
   const onIconButtonPress = () => {
     if (inputRef.current) {
       inputRef.current.blur();
@@ -31,10 +29,8 @@ const HomeScreen = () => {
   };
 
   const onChangeInput = (text: string) => {
-    console.log("text", text);
-
     setInput(text);
-    getTvShowsBySearch(text).then((res) => setSearchResults(res));
+    getEpisodesSingleSearch(text).then((res) => setSearchResults(res));
   };
 
   return (
