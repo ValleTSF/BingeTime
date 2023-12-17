@@ -22,3 +22,8 @@ export const EpisodeTitle = styled.Text`
   font-size: 14px;
   font-weight: 700;
 `;
+
+export const EpisodeThumbnail = styled.Image`
+  width: 150px;
+  height: 100px;
+`;

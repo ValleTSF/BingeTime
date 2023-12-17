@@ -30,3 +30,8 @@ export const CharacterName = styled.Text`
   font-size: 14px;
   color: #dbdbdb;
 `;
+
+export const ActorImage = styled.Image`
+  width: 150px;
+  height: 150px;
+`;

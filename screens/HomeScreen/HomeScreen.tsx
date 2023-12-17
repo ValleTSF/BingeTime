@@ -1,7 +1,7 @@
 import { useState } from "react";
 import * as S from "./styled";
 import { Tvshow } from "../../types";
-import TvShowList from "./components/TvShowList";
+import EpisodeList from "./components/EpisodeList";
 import SearchBar from "./components/SearchBar";
 
 const HomeScreen = () => {
@@ -17,7 +17,7 @@ const HomeScreen = () => {
         setSearchResult={setSearchResult}
       />
       {isSearching && searchResult?._embedded.episodes && (
-        <TvShowList data={searchResult._embedded.episodes} />
+        <EpisodeList data={searchResult._embedded.episodes} />
       )}
     </S.Container>
   );

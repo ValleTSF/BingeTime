@@ -14,7 +14,7 @@ const CastCarouselItem = ({ castMember }: Props) => {
 
   return (
     <S.CastMemberCard>
-      <Image style={{ width: 150, height: 150 }} source={{ uri: imageUri }} />
+      <S.ActorImage source={{ uri: imageUri }} />
       <S.CastName>{castMember.person.name}</S.CastName>
       <S.CharacterName>{castMember.character.name}</S.CharacterName>
     </S.CastMemberCard>

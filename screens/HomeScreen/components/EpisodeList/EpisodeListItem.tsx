@@ -10,7 +10,7 @@ type Props = {
   episode: Episode;
 };
 
-const TvShowItem = ({ episode }: Props) => {
+const EpisodeListItem = ({ episode }: Props) => {
   const navigation =
     useNavigation<NativeStackNavigationProp<RootStackParamList>>();
 
@@ -30,7 +30,7 @@ const TvShowItem = ({ episode }: Props) => {
         })
       }
     >
-      <Image style={{ width: 150, height: 100 }} source={{ uri: imageUri }} />
+      <S.EpisodeThumbnail source={{ uri: imageUri }} />
       <S.EpisodeInformationContainer>
         <S.EpisodeTitle>{episode.name}</S.EpisodeTitle>
         <Text>Season: {episode.season}</Text>
@@ -40,4 +40,4 @@ const TvShowItem = ({ episode }: Props) => {
   );
 };
 
-export default TvShowItem;
+export default EpisodeListItem;
