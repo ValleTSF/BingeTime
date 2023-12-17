@@ -6,3 +6,8 @@ export const Container = styled.ScrollView`
   height: 100%;
   background-color: #383838;
 `;
+
+export const EpisodeImage = styled.Image`
+  width: 100%;
+  height: 30%;
+`;

@@ -34,10 +34,7 @@ const EpisodeDetailsScreen = ({ route }: Props) => {
         justifyContent: "flex-start",
       }}
     >
-      <Image
-        style={{ height: "30%", width: "100%" }}
-        source={{ uri: imageUri }}
-      />
+      <S.EpisodeImage source={{ uri: imageUri }} />
       <EpisodeInfo episode={episode} />
       <CastCarousel cast={cast} />
     </S.Container>
