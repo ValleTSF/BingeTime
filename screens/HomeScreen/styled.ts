@@ -19,7 +19,8 @@ export const Container = styled.ImageBackground`
 `;
 
 export const SearchContainer = styled.View`
-  margin-top: 30px;
+  margin-top: 40px;
+  padding: 10px;
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -42,7 +43,7 @@ export const SearchInput = styled(TextInput)`
   width: 95%;
 `;
 
-export const IconButton = styled(Icon)`
+export const BackButton = styled(Icon)`
   font-size: 20px;
   margin-right: 10px;
   color: #dbdbdb;

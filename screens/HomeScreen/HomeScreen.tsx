@@ -1,57 +1,50 @@
-import React, { useRef, useState } from "react";
+import { useRef, useState } from "react";
 import * as S from "./styled";
-import { NativeStackScreenProps } from "@react-navigation/native-stack";
-import { RootStackParamList, ScreenRoutes } from "../../App";
-import { ImageBackground, TextInput } from "react-native";
+import { TextInput } from "react-native";
 import { getEpisodesSingleSearch } from "../../api";
 import { Tvshow } from "../../types";
 import TvShowList from "../../components/TvShowList";
 
-type Props = NativeStackScreenProps<
-  RootStackParamList,
-  ScreenRoutes.HOME_SCREEN
->;
-
 const HomeScreen = () => {
-  const [searchMode, setSearchMode] = useState<boolean>(false);
-  const [input, setInput] = useState<string>("");
+  const [isSearching, setIsSearching] = useState<boolean>(false);
+  const [searchInput, setSearchInput] = useState<string>("");
   const [searchResults, setSearchResults] = useState<Tvshow | null>();
 
-  const inputRef = useRef<TextInput | null>(null);
+  const searchInputRef = useRef<TextInput | null>(null);
 
-  const onIconButtonPress = () => {
-    if (inputRef.current) {
-      inputRef.current.blur();
-      setSearchMode(false);
+  const onBackButtonPress = () => {
+    if (searchInputRef.current) {
+      searchInputRef.current.blur();
+      setIsSearching(false);
       setSearchResults(null);
-      setInput("");
+      setSearchInput("");
     }
   };
 
   const onChangeInput = (text: string) => {
-    setInput(text);
+    setSearchInput(text);
     getEpisodesSingleSearch(text).then((res) => setSearchResults(res));
   };
 
   return (
     <S.Container source={require("../../assets/city.jpg")}>
-      {!searchMode && <S.Header>BingeTime</S.Header>}
+      {!isSearching && <S.Header>BingeTime</S.Header>}
       <S.SearchContainer>
-        {searchMode && (
-          <S.IconButton onPress={onIconButtonPress} name="arrow-left" />
+        {isSearching && (
+          <S.BackButton onPress={onBackButtonPress} name="arrow-left" />
         )}
-        <S.SearchBar onPress={() => inputRef.current?.focus()}>
+        <S.SearchBar onPress={() => searchInputRef.current?.focus()}>
           <S.SearchInput
             placeholder="Search BingeTime"
             placeholderTextColor="#969696"
-            ref={inputRef}
-            onFocus={() => setSearchMode(true)}
-            value={input}
+            ref={searchInputRef}
+            onFocus={() => setIsSearching(true)}
+            value={searchInput}
             onChangeText={onChangeInput}
           />
         </S.SearchBar>
       </S.SearchContainer>
-      {searchMode && searchResults?._embedded.episodes && (
+      {isSearching && searchResults?._embedded.episodes && (
         <TvShowList data={searchResults._embedded.episodes} />
       )}
     </S.Container>

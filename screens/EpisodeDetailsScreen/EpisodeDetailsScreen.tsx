@@ -1,4 +1,4 @@
-import { View, Text, Image, ScrollView } from "react-native";
+import { Image } from "react-native";
 import React, { useEffect, useState } from "react";
 import * as S from "./styled";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";

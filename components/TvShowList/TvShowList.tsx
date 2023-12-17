@@ -1,7 +1,6 @@
 import React from "react";
-import { Episode, Tvshow } from "../../types";
+import { Episode } from "../../types";
 import TvShowItem from "./TvShowItem";
-import * as S from "./styled";
 import { FlatList } from "react-native";
 
 type Props = {
