@@ -1,5 +1,5 @@
 import { Image } from "react-native";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import * as S from "./styled";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { RootStackParamList, ScreenRoutes } from "../../App";
@@ -25,8 +25,6 @@ const EpisodeDetailsScreen = ({ route }: Props) => {
   const imageUri = episode.image
     ? episode.image.original
     : "https://britchamvn.com/no-image.jpeg";
-
-  console.log("showid", showId);
 
   useEffect(() => {
     getCastFromShow(showId).then((cast) => setCast(cast));

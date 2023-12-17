@@ -9,8 +9,6 @@ type Props = {
 };
 
 const CastCarousel = ({ cast }: Props) => {
-  console.log("cast", cast);
-
   return (
     <S.Container>
       <S.Title>Cast</S.Title>
