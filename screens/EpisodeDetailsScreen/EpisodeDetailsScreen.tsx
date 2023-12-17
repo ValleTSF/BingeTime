@@ -5,7 +5,7 @@ import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { RootStackParamList, ScreenRoutes } from "../../App";
 import { getShowIdFromEpisodeShowLink } from "../../utils";
 import { getCastFromShow } from "../../api";
-import CastCarousel from "../../components/CastCarousel";
+import CastCarousel from "./components/CastCarousel";
 import { CastMember } from "../../types";
 import EpisodeInfo from "./components/EpisodeInfo";
 

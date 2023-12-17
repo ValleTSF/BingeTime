@@ -1,9 +1,9 @@
 import React from "react";
 import { View, Text, Image } from "react-native";
-import { Episode, Tvshow } from "../../types";
+import { Episode, Tvshow } from "../../../../types";
 import * as S from "./styled";
 import { useNavigation } from "@react-navigation/native";
-import { RootStackParamList, ScreenRoutes } from "../../App";
+import { RootStackParamList, ScreenRoutes } from "../../../../App";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 
 type Props = {

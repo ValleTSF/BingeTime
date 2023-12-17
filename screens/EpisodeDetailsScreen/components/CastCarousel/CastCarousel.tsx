@@ -1,6 +1,6 @@
 import { View, Text, FlatList } from "react-native";
 import React from "react";
-import { CastMember } from "../../types";
+import { CastMember } from "../../../../types";
 import CastCarouselItem from "./CastCarouselItem";
 import * as S from "./styled";
 

@@ -1,6 +1,6 @@
 import { FlatList } from "react-native";
 import styled from "styled-components/native";
-import { Episode } from "../../types";
+import { Episode } from "../../../../types";
 
 export const EpisodeContainer = styled.TouchableOpacity`
   display: flex;

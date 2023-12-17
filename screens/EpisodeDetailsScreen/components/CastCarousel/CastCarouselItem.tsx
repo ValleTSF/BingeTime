@@ -1,6 +1,6 @@
 import { Image } from "react-native";
 import React from "react";
-import { CastMember } from "../../types";
+import { CastMember } from "../../../../types";
 import * as S from "./styled";
 
 type Props = {

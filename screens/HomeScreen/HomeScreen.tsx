@@ -1,7 +1,7 @@
 import { useState } from "react";
 import * as S from "./styled";
 import { Tvshow } from "../../types";
-import TvShowList from "../../components/TvShowList";
+import TvShowList from "./components/TvShowList";
 import SearchBar from "./components/SearchBar";
 
 const HomeScreen = () => {

@@ -1,5 +1,5 @@
 import React from "react";
-import { Episode } from "../../types";
+import { Episode } from "../../../../types";
 import TvShowItem from "./TvShowItem";
 import { FlatList } from "react-native";
 
