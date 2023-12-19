@@ -1,17 +1,26 @@
-import { TextInput } from "react-native";
+import { TextInput, TouchableOpacity } from "react-native";
 import * as S from "./styled";
 import { useRef, useState } from "react";
 import { getEpisodesSingleSearch } from "../../../../api";
-import { Tvshow } from "../../../../types";
+import { Episode, Tvshow } from "../../../../types";
 
 type Props = {
   isSearching: boolean;
   setIsSearching: (searching: boolean) => void;
   setSearchResult: (result: Tvshow | null) => void;
+  setFilteredEpisodeResult: (filteredEpisodes: Episode[] | null) => void;
+  searchResult: Tvshow | null | undefined;
 };
 
-const SearchBar = ({ isSearching, setIsSearching, setSearchResult }: Props) => {
+const SearchBar = ({
+  isSearching,
+  searchResult,
+  setIsSearching,
+  setSearchResult,
+  setFilteredEpisodeResult,
+}: Props) => {
   const [searchInput, setSearchInput] = useState<string>("");
+  const [filtering, setFiltering] = useState<boolean>(false);
 
   const searchInputRef = useRef<TextInput | null>(null);
 
@@ -24,9 +33,27 @@ const SearchBar = ({ isSearching, setIsSearching, setSearchResult }: Props) => {
     }
   };
 
+  const onSubmit = () => {
+    setFilteredEpisodeResult(null);
+    getEpisodesSingleSearch(searchInput).then((res) => setSearchResult(res));
+    if (searchInputRef.current) {
+      searchInputRef.current.clear();
+    }
+    setFiltering(true);
+  };
+
   const onChangeInput = (text: string) => {
     setSearchInput(text);
-    getEpisodesSingleSearch(text).then((res) => setSearchResult(res));
+    if (filtering) {
+      const filteredList = searchResult?._embedded.episodes.filter(
+        (episode) =>
+          episode.name.toLowerCase().includes(searchInput.toLowerCase()) ||
+          episode.summary.toLowerCase().includes(searchInput.toLowerCase())
+      );
+      if (filteredList) {
+        setFilteredEpisodeResult(filteredList);
+      }
+    }
   };
 
   return (
@@ -36,6 +63,7 @@ const SearchBar = ({ isSearching, setIsSearching, setSearchResult }: Props) => {
       )}
       <S.SearchInputContainer onPress={() => searchInputRef.current?.focus()}>
         <S.SearchInput
+          onSubmitEditing={onSubmit}
           placeholder="Search BingeTime"
           placeholderTextColor="#969696"
           ref={searchInputRef}
@@ -44,6 +72,9 @@ const SearchBar = ({ isSearching, setIsSearching, setSearchResult }: Props) => {
           onChangeText={onChangeInput}
         />
       </S.SearchInputContainer>
+      <TouchableOpacity onPress={onSubmit}>
+        <S.SubmitText>Enter</S.SubmitText>
+      </TouchableOpacity>
     </S.SearchContainer>
   );
 };

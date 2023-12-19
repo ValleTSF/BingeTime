@@ -32,3 +32,8 @@ export const BackButton = styled(Icon)`
   margin-right: 10px;
   color: #dbdbdb;
 `;
+
+export const SubmitText = styled.Text`
+  margin-left: 10px;
+  color: white;
+`;
