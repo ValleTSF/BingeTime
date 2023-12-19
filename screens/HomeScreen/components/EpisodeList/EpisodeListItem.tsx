@@ -1,6 +1,6 @@
 import React from "react";
-import { View, Text, Image } from "react-native";
-import { Episode, Tvshow } from "../../../../types";
+import { Text } from "react-native";
+import { Episode } from "../../../../types";
 import * as S from "./styled";
 import { useNavigation } from "@react-navigation/native";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
