@@ -1,9 +1,11 @@
-import { Image } from "react-native";
 import { useEffect, useState } from "react";
 import * as S from "./styled";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
-import { RootStackParamList, ScreenRoutes } from "../../App";
-import { getShowIdFromEpisodeShowLink } from "../../utils";
+import {
+  RootStackParamList,
+  ScreenRoutes,
+  getShowIdFromEpisodeShowLink,
+} from "../../utils";
 import { getCastFromShow } from "../../api";
 import CastCarousel from "./components/CastCarousel";
 import { CastMember } from "../../types";

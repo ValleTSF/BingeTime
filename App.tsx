@@ -4,16 +4,7 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import EpisodeDetailsScreen from "./screens/EpisodeDetailsScreen";
 import { Episode } from "./types";
-
-export enum ScreenRoutes {
-  HOME_SCREEN = "screen/HomeScreen",
-  EPISODE_DETAILS_SCREEN = "screen/EpisodeDetailsScreen",
-}
-
-export type RootStackParamList = {
-  [ScreenRoutes.HOME_SCREEN]: undefined;
-  [ScreenRoutes.EPISODE_DETAILS_SCREEN]: { episode: Episode };
-};
+import { RootStackParamList, ScreenRoutes } from "./utils";
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
